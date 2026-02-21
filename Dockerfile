@@ -17,5 +17,5 @@ COPY --from=builder /app/.next/static ./.next/static
 # Copy public (Next.js static assets)
 COPY --from=builder /app/public ./public
 
-EXPOSE 3000
+EXPOSE 3002
 CMD ["node", "server.js"]

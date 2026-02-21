@@ -19,7 +19,7 @@ This creates `.next/standalone/` with a minimal, self-contained server bundle.
 ### Option 1: Direct Node (development/testing)
 
 ```bash
-PORT=3000 node .next/standalone/server.js
+PORT=3002 node .next/standalone/server.js
 ```
 
 ### Option 2: PM2 (recommended for VPS)
@@ -36,7 +36,7 @@ pm2 startup  # enable auto-start on reboot
 
 ```bash
 docker build -t glass-artist-portfolio .
-docker run -p 3000:3000 glass-artist-portfolio
+docker run -p 3002:3002 glass-artist-portfolio
 ```
 
 ## Environment Variables
@@ -53,7 +53,7 @@ server {
     listen 80;
     server_name your-domain.com;
     location / {
-        proxy_pass http://127.0.0.1:3000;
+        proxy_pass http://127.0.0.1:3002;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
