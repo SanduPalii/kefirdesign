@@ -1,55 +1,65 @@
 "use client";
 
 import Image from "next/image";
-
-const steps = [
-  {
-    title: "From light to matter",
-    caption: "Sketch",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80",
-  },
-  {
-    title: "Molten transformation",
-    caption: "Glass shaping",
-    image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=600&q=80",
-  },
-  {
-    title: "Frozen transparency",
-    caption: "Final piece",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
+import { translations } from "@/constants/translations";
 
 export default function Process() {
+  const { language } = useLanguage();
+  const t = translations.header;
+
+  const steps = [
+    {
+      title: language === 'fi' ? "Tuli ja muoto" : "Fire and Form",
+      caption: language === 'fi' ? "Lasinpuhallus" : "Glass Blowing",
+      image: "/images/process-shaping.jpeg",
+    },
+    {
+      title: language === 'fi' ? "Kylmä tarkkuus" : "Cold Precision",
+      caption: language === 'fi' ? "Hionta ja kiillotus" : "Grinding and Polishing",
+      image: "/images/process-cold-working.jpeg",
+    },
+    {
+      title: language === 'fi' ? "Aika ja kärsivällisyys" : "Time and Patience",
+      caption: language === 'fi' ? "Uunityöskentely" : "Kiln Work",
+      image: "/images/process-kiln.jpeg",
+    },
+  ];
+
   return (
-    <section id="process" className="py-24 md:py-32 bg-nude-sand/50">
+    <section id="process" className="py-24 md:py-32 bg-main-glass/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        <h2 className="font-serif text-4xl md:text-5xl font-light text-warm-gray tracking-elegant mb-4">
-          The Process
+        <h2 className="font-serif text-4xl md:text-5xl font-light text-main-deep tracking-elegant mb-4">
+          {t.process[language]}
         </h2>
         <p className="font-sans font-light text-warm-grayLight text-lg mb-20 max-w-xl">
-          From initial concept to finished form—each piece passes through fire,
-          breath, and intention.
+          {language === 'fi'
+            ? "Alkuperäisestä ideasta valmiiseen muotoon — jokainen teos kulkee tulen, hengityksen ja aikomuksen kautta."
+            : "From initial concept to finished form — each piece passes through fire, breath, and intention."
+          }
         </p>
 
         <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
           {steps.map((step, i) => (
-            <div key={i} className="group">
-              <div className="relative aspect-[4/5] mb-6 overflow-hidden">
+            <div key={i} className="group glass-caustic">
+              <div className="relative aspect-[4/5] mb-8 overflow-hidden glass-panel border-main-green/10 group-hover:border-main-green/40 transition-colors duration-500">
                 <Image
                   src={step.image}
                   alt={step.caption}
                   fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
+                <div className="absolute inset-0 bg-main-deep/0 group-hover:bg-main-deep/30 transition-colors duration-700" />
               </div>
-              <span className="font-sans text-xs font-light tracking-elegant text-warm-grayLight uppercase">
-                {step.caption}
-              </span>
-              <p className="font-serif text-2xl font-light text-warm-gray mt-2">
-                {step.title}
-              </p>
+              <div className="px-2">
+                <span className="font-sans text-[10px] font-bold tracking-elegant text-main-green uppercase">
+                  Step 0{i + 1} — {step.caption}
+                </span>
+                <p className="font-serif text-2xl font-light text-main-deep mt-2">
+                  {step.title}
+                </p>
+              </div>
             </div>
           ))}
         </div>

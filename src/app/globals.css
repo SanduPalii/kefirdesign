@@ -27,3 +27,44 @@ body {
 ::selection {
   background-color: rgba(147, 184, 151, 0.5);
 }
+
+@layer components {
+  .glass-panel {
+    @apply bg-gradient-to-br from-white/10 via-glass-forest/40 to-glass-forest/60 border border-white/10 rounded-2xl overflow-hidden relative;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.1),
+      0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-panel::before {
+    content: '';
+    @apply absolute inset-0 opacity-[0.05] pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .glass-caustic {
+    @apply relative overflow-hidden transition-all duration-700;
+  }
+
+  .glass-caustic::after {
+    content: '';
+    @apply absolute -inset-[100%] opacity-0 transition-opacity duration-700 pointer-events-none;
+    background: radial-gradient(circle at center,
+        rgba(147, 184, 151, 0.15) 0%,
+        transparent 70%);
+    filter: blur(40px);
+  }
+
+  .glass-caustic:hover::after {
+    @apply opacity-100 animate-caustic-flow;
+  }
+
+  .button-maestro {
+    @apply inline-flex items-center justify-center px-8 py-4 rounded-full bg-gradient-to-r from-main-glass/30 to-main-glass/50 border border-main-green/30 text-nude-white transition-all duration-300 hover:from-main-glass/50 hover:to-main-glass/70 hover:border-main-green/60 active:scale-95 touch-manipulation;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark-glass-text {
+    @apply text-main-deep drop-shadow-[0_1px_1px_rgba(255, 255, 255, 0.1)];
+  }
+}

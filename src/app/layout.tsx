@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   keywords: ["glass art", "glass sculpture", "contemporary art", "glass artist", "sculpture", "installations"],
 };
 
+import { LanguageProvider } from "@/context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="font-sans antialiased bg-nude-white text-warm-gray">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
