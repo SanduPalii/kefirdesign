@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
+import { GalleryProvider } from "@/context/GalleryContext";
+import Lightbox from "@/components/Lightbox";
 
 export default function RootLayout({
   children,
@@ -18,9 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="font-sans antialiased bg-nude-white text-warm-gray">
-        <LanguageProvider>
-          {children}
-        </LanguageProvider>
+        <GalleryProvider>
+          <LanguageProvider>
+            {children}
+            <Lightbox />
+          </LanguageProvider>
+        </GalleryProvider>
       </body>
     </html>
   );

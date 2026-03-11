@@ -3,10 +3,12 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/constants/translations";
+import { useGallery } from "@/context/GalleryContext";
 
 export default function Process() {
   const { language } = useLanguage();
   const t = translations.header;
+  const { openGallery } = useGallery();
 
   const steps = [
     {
@@ -26,6 +28,8 @@ export default function Process() {
     },
   ];
 
+  const processImages = steps.map((s) => s.image);
+
   return (
     <section id="process" className="py-24 md:py-32 bg-main-glass/5">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
@@ -42,7 +46,10 @@ export default function Process() {
         <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
           {steps.map((step, i) => (
             <div key={i} className="group glass-caustic">
-              <div className="relative aspect-[4/5] mb-8 overflow-hidden glass-panel border-main-green/10 group-hover:border-main-green/40 transition-colors duration-500">
+              <div
+                className="relative aspect-[4/5] mb-8 overflow-hidden glass-panel border-main-green/10 group-hover:border-main-green/40 transition-colors duration-500 cursor-pointer"
+                onClick={() => openGallery(processImages, i)}
+              >
                 <Image
                   src={step.image}
                   alt={step.caption}

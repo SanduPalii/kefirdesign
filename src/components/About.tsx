@@ -3,17 +3,23 @@
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 import { translations } from "@/constants/translations";
+import { useGallery } from "@/context/GalleryContext";
 
 export default function About() {
   const { language } = useLanguage();
   const t = translations.about;
+  const { openGallery } = useGallery();
+  const aboutImages = ["/images/about-artisan.jpeg"];
 
   return (
     <section id="about" className="py-24 md:py-32 bg-nude-white">
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Portrait/Action Shot */}
-          <div className="relative aspect-[4/5] min-h-[400px] bg-nude-sand/10">
+          <div
+            className="relative aspect-[4/5] min-h-[400px] bg-nude-sand/10 cursor-pointer"
+            onClick={() => openGallery(aboutImages, 0)}
+          >
             <Image
               src="/images/about-artisan.jpeg"
               alt="Artisan working with glass"

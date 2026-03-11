@@ -20,6 +20,12 @@ const config: Config = {
           border: "rgba(255, 255, 255, 0.1)",
           highlight: "rgba(255, 255, 255, 0.05)",
         },
+        neon: {
+          green: "#39FF14",
+          glow: "rgba(57, 255, 20, 0.18)",
+          border: "rgba(57, 255, 20, 0.35)",
+          strong: "rgba(57, 255, 20, 0.6)",
+        },
         nude: {
           white: "#F8F6F2",
           light: "#EAE4DC",
@@ -50,11 +56,16 @@ const config: Config = {
           "33%": { transform: "translate(2%, 1%) rotate(2deg) scale(1.05)" },
           "66%": { transform: "translate(-1%, 2%) rotate(-1deg) scale(0.98)" },
         },
+        neonPulse: {
+          "0%, 100%": { boxShadow: "0 0 12px rgba(57,255,20,0.25), inset 0 0 12px rgba(57,255,20,0.05)" },
+          "50%": { boxShadow: "0 0 32px rgba(57,255,20,0.55), inset 0 0 20px rgba(57,255,20,0.12)" },
+        },
       },
       animation: {
         "fade-in": "fadeIn 1s ease-out forwards",
         "fade-in-up": "fadeInUp 0.8s ease-out forwards",
         "caustic-flow": "caustic 8s ease-in-out infinite",
+        "neon-pulse": "neonPulse 3s ease-in-out infinite",
       },
       letterSpacing: {
         elegant: "0.2em",

@@ -67,4 +67,30 @@ body {
   .dark-glass-text {
     @apply text-main-deep drop-shadow-[0_1px_1px_rgba(255, 255, 255, 0.1)];
   }
+
+  .neon-glass-panel {
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.04) 0%, rgba(0, 0, 0, 0.55) 100%);
+    border: 1px solid rgba(57, 255, 20, 0.28);
+    border-radius: 1rem;
+    box-shadow:
+      0 0 20px rgba(57, 255, 20, 0.12),
+      inset 0 1px 0 rgba(57, 255, 20, 0.08);
+    backdrop-filter: blur(14px);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .neon-glass-panel:hover {
+    border-color: rgba(57, 255, 20, 0.6);
+    box-shadow:
+      0 0 42px rgba(57, 255, 20, 0.32),
+      inset 0 1px 0 rgba(57, 255, 20, 0.14);
+    transform: translateY(-5px);
+  }
+
+  .neon-icon-wrap {
+    @apply flex items-center justify-center w-12 h-12 rounded-xl mb-6;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.25);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.15);
+  }
 }
